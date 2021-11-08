@@ -29,14 +29,12 @@ public class ExtentReportUtil extends BaseUtil {
         htmlReporter.config().setDocumentTitle("Test report for Selenium Basic");
         htmlReporter.config().setEncoding("utf-8");
         htmlReporter.config().setReportName("Test report");
-
         extent.attachReporter(htmlReporter);
-
     }
 
     public void ExtentReportScreenshot() throws IOException {
 
-        var scr = ((TakesScreenshot)Driver).getScreenshotAs(OutputType.FILE);
+        File scr = ((TakesScreenshot)Driver).getScreenshotAs(OutputType.FILE);
         Files.copy(scr.toPath(), new File(reportLocation + "screenshot.png").toPath());
         scenarioDef.fail("details").addScreenCaptureFromPath(reportLocation + "screenshot.png");
     }
